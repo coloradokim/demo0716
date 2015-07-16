@@ -11,7 +11,11 @@ router.get('/thanks', function(req, res, next) {
 });
 
 router.post('/buckle', function(req, res, next) {
-  res.redirect('/thanks')
+  if(!req.body.ghost) {
+    res.render('index', {errors: 'Doh. Ghost is empty!'})
+  } else {
+    res.redirect('/thanks')
+  }
 });
 
 module.exports = router;
